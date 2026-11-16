@@ -69,7 +69,7 @@ export function Header() {
       <div className="relative z-10 mx-auto flex max-w-[1360px] items-center justify-between gap-2 rounded-full bg-white/95 py-2 pr-2 pl-2.5 shadow-[0_6px_30px_rgba(47,58,38,0.08)] backdrop-blur sm:pl-5">
         <Link href="/" className="flex min-w-0 items-center gap-2.5 sm:gap-3" onClick={() => setOpen(false)}>
           <span className="relative size-10 shrink-0 overflow-hidden rounded-full bg-[#8a0b0e] ring-2 ring-gold/60">
-            <Image src="/brand/logo.png" alt="" fill sizes="80px" className="scale-[2] object-cover object-[52%_25%]" priority />
+            <Image src="/brand/logo-192.webp" alt="" fill unoptimized className="scale-[2] object-cover object-[52%_25%]" priority />
           </span>
           <span className="min-w-0 leading-tight">
             <span className="block font-serif text-[17px] font-medium whitespace-nowrap sm:text-xl">Sri Meenakshi</span>

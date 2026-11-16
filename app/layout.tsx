@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   },
   description:
     "Handwoven Kanchipuram silk sarees with pure zari, sourced directly from weaver families since 1972. Silk Mark certified. Free shipping across India.",
-  icons: { icon: "/brand/logo.png" },
+  icons: { icon: "/brand/logo-192.webp", apple: "/brand/logo-192.webp" },
 };
 
 export const viewport: Viewport = {

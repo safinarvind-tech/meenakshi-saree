@@ -7,14 +7,10 @@ const nextConfig: NextConfig = {
   partialPrefetching: true,
   poweredByHeader: false,
   images: {
-    // Only optimise our own brand assets and uploaded product media.
-    localPatterns: [
-      { pathname: "/brand/**", search: "" },
-      { pathname: "/media/**", search: "" },
-    ],
-    // Product photos stored in Supabase Storage (free hosting setup).
-    remotePatterns: [{ protocol: "https", hostname: "*.supabase.co", pathname: "/storage/v1/object/public/**", search: "" }],
-    formats: ["image/avif", "image/webp"],
+    // Photos are saved with ready-made 640px/1200px copies (lib/image-variants.ts) and the loader picks one,
+    // so the server never resizes images on request. That keeps small hosts (Render free: 0.1 CPU, 512 MB) fast.
+    loader: "custom",
+    loaderFile: "./lib/image-loader.ts",
   },
   experimental: {
     // Admin uploads several product photos per request.

@@ -26,7 +26,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       <div className="min-w-0 flex-1">
         <header className="sticky top-0 z-30 flex items-center gap-3 bg-olive/95 px-4 pt-[max(12px,env(safe-area-inset-top))] pb-3 text-paper backdrop-blur lg:hidden">
           <Link href="/admin" className="flex items-center gap-2.5">
-            <Image src="/brand/logo.png" alt="" width={32} height={32} className="rounded-full" />
+            <Image src="/brand/logo-192.webp" alt="" width={32} height={32} unoptimized className="rounded-full" />
             <span className="font-serif text-lg leading-none">Sri Meenakshi</span>
           </Link>
           <span className="ml-auto rounded-full bg-white/10 px-2.5 py-1 text-[10px] tracking-[0.18em] text-gold-light uppercase">Admin</span>
