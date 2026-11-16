@@ -39,3 +39,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+/generated
+
+# uploaded product images (persistent volume in production)
+/storage
+
+!.env.example

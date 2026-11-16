@@ -1,36 +1,57 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Sri Meenakshi Silk House — e-commerce
 
-## Getting Started
+Customer storefront + admin panel for a Kanchipuram silk saree brand, built from the approved **Quiet Luxury** design (`design/quiet-luxury/`).
 
-First, run the development server:
+**Stack:** Next.js 16 (App Router, Cache Components) · React 19 · TypeScript · Tailwind CSS 4 · PostgreSQL + Prisma 7 · Razorpay · Docker
+
+## What's included
+
+| Storefront | Admin (`/admin`) |
+|---|---|
+| Home, shop with filters/search/sort, product page with gallery | Dashboard (today's orders, 30-day sales, low stock) |
+| Blouse options (unstitched / stitched / designer) and add-ons (fall & pico, gift wrap) | Products: create/edit, photo upload (auto-resized to WebP), main photo, archive |
+| Cart, checkout with coupon, **Razorpay** (UPI, cards, net banking) and **Cash on Delivery** | Orders: status, payment, courier + tracking, notes, cancel (restocks automatically) |
+| Order confirmation page | Categories, coupons, video-call bookings, customers |
+| Video-call shopping booking, story, saree care, contact, policy pages | Roles: Owner, Manager, Staff |
+
+Built-in safeguards: prices and stock are always re-checked on the server; stock is reserved atomically, so the last saree can't be sold twice; unpaid online orders release their stock after 30 minutes; Razorpay payments are verified by signature and by webhook.
+
+## Local development
+
+Requirements: Node.js 20.9+ and PostgreSQL.
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+cp .env.example .env        # then fill in DATABASE_URL, AUTH_SECRET, ADMIN_EMAIL, ADMIN_PASSWORD
+npm run db:migrate          # create tables
+npm run db:seed             # categories, owner account, WELCOME10 coupon, 15 sample sarees
+npm run dev                 # http://localhost:3000  ·  admin: http://localhost:3000/admin
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Useful commands: `npm run typecheck`, `npm run lint`, `npm run test:orders` (order/stock integration test), `npm run db:studio` (browse the database).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+> Sample product photos come from Pexels/Unsplash (free licence) and are placeholders. Replace them with the brand's own photos from the admin.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Deploying (Hostinger VPS + Coolify, paid in INR)
 
-## Learn More
+1. Buy a **Hostinger KVM 2 VPS** (Mumbai) with the **Coolify** template.
+2. In Coolify: **+ New → PostgreSQL**. Copy its internal connection URL.
+3. **+ New → Application → your GitHub repo**, build pack **Dockerfile**.
+4. Environment variables (see `.env.example`): `DATABASE_URL`, `AUTH_SECRET`, `ADMIN_EMAIL`, `ADMIN_PASSWORD`, `NEXT_PUBLIC_SITE_URL`, and the Razorpay keys when ready.
+5. **Storages → add a volume** mounted at `/app/storage` (keeps uploaded product photos across deploys).
+6. Set your domain, enable HTTPS, deploy. On start the container runs database migrations and creates the owner account automatically.
+7. Point the domain's DNS to Cloudflare (free) and add an A record to the VPS IP.
+8. Back up PostgreSQL daily (Coolify → Database → Backups).
 
-To learn more about Next.js, take a look at the following resources:
+The same Docker image also runs on Render, Railway, DigitalOcean or AWS.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Razorpay
+1. Complete KYC (needs the policy pages live: `/policies/shipping`, `/policies/returns`, `/policies/privacy`, `/policies/terms`).
+2. Add `RAZORPAY_KEY_ID` / `RAZORPAY_KEY_SECRET` (test keys first). The "Pay online" option appears automatically.
+3. Dashboard → Webhooks → `https://YOUR-DOMAIN/api/razorpay/webhook`, events `payment.captured` and `order.paid`, and set `RAZORPAY_WEBHOOK_SECRET`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Before launch: things to confirm with the client
+Highlighted text on `/contact` and `/policies/*` (address, phone, GSTIN, return window, dispatch times, COD limit), real product photos and data, and the GST rate/HSN code with their accountant.
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Next phases
+Customer accounts with phone OTP (MSG91), WhatsApp/email order notifications, Shiprocket shipping labels and tracking, GST invoice PDFs, reviews, homepage banner editor.

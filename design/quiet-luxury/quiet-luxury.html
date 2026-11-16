@@ -1,0 +1,170 @@
+<!doctype html><html><head><meta charset="utf-8"><title>D07 Quiet Luxury</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=Outfit:wght@300;400;500;600&family=Jost:wght@400;500&display=block" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+:root{--cream:#F6F2EB;--oat:#EAE2D5;--olive:#2F3A26;--terra:#B4532A;--gold:#B89350;--ink:#1F2419;--muted:#6E6B5F}
+body{background:var(--cream);color:var(--ink);font-family:Outfit,sans-serif}
+img{display:block;width:100%;height:100%;object-fit:cover}
+.fr{font-family:Fraunces,serif}
+.pill{display:inline-flex;align-items:center;gap:10px;border-radius:999px;padding:14px 26px;font-size:15px;font-weight:500}
+.top{padding:22px 40px 0}
+.navbar{display:flex;align-items:center;justify-content:space-between;background:#fff;border-radius:999px;padding:12px 14px 12px 22px;box-shadow:0 6px 30px rgba(47,58,38,.07)}
+.logo{display:flex;align-items:center;gap:12px}
+.logo .emblem{width:42px;height:42px}
+.logo b{font-family:Fraunces,serif;font-size:22px;font-weight:500}
+.logo small{display:block;font-size:11px;letter-spacing:.2em;color:var(--muted);text-transform:uppercase}
+.links{display:flex;gap:6px}
+.links span{padding:10px 18px;border-radius:999px;font-size:15px}
+.links .on{background:var(--oat)}
+.acts{display:flex;gap:10px;align-items:center}
+.ic{width:46px;height:46px;border-radius:50%;background:var(--oat);display:grid;place-items:center}
+.ic svg{width:19px;height:19px;stroke:var(--ink);fill:none;stroke-width:1.6}
+.bagp{background:var(--olive);color:#fff}
+.hero{margin:20px 40px 0;display:grid;grid-template-columns:1fr 1fr;gap:20px;height:760px}
+.hl{background:var(--olive);border-radius:32px;color:#F3EEDF;padding:64px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
+.hl:after{content:"";position:absolute;right:-120px;bottom:-120px;width:380px;height:380px;border-radius:50%;border:1px solid rgba(184,147,80,.35);box-shadow:0 0 0 40px rgba(184,147,80,.05)}
+.chip-s{display:inline-flex;gap:10px;align-items:center;background:rgba(255,255,255,.1);border-radius:999px;padding:9px 16px 9px 9px;font-size:14px}
+.chip-s i{width:26px;height:26px;border-radius:50%;background:var(--gold);display:grid;place-items:center;font-style:normal;color:var(--olive);font-size:13px}
+.hl h1{font-family:Fraunces,serif;font-weight:300;font-size:96px;line-height:.98;letter-spacing:-.03em;margin-top:34px}
+.hl h1 em{font-style:italic;color:#E2C48A}
+.hl p{font-size:18px;line-height:1.65;opacity:.8;max-width:430px;font-weight:300;margin-top:26px}
+.hb{display:flex;gap:12px;margin-top:36px}
+.hb .a{background:#F3EEDF;color:var(--olive)}.hb .b{border:1px solid rgba(243,238,223,.4)}
+.rating{display:flex;align-items:center;gap:14px;font-size:14px;opacity:.9}
+.av{display:flex}.av span{width:36px;height:36px;border-radius:50%;border:2px solid var(--olive);margin-left:-10px;overflow:hidden}.av span:first-child{margin-left:0}
+.hr{border-radius:32px;overflow:hidden;position:relative}
+.hr img{object-position:50% 25%}
+.glass{position:absolute;left:24px;bottom:24px;right:24px;display:flex;gap:16px;align-items:center;background:rgba(255,255,255,.72);backdrop-filter:blur(14px);border-radius:22px;padding:14px;color:var(--ink)}
+.glass .t{width:70px;height:84px;border-radius:14px;overflow:hidden;flex:none}
+.glass b{font-family:Fraunces,serif;font-size:21px;font-weight:500;display:block}
+.glass small{color:var(--muted);font-size:13px}
+.glass .pr{margin-left:auto;text-align:right}
+.glass .pr b{font-family:Outfit;font-size:18px}
+.glass .add{background:var(--olive);color:#fff;padding:12px 20px;border-radius:999px;font-size:14px;margin-left:10px}
+.badge{position:absolute;top:24px;right:24px;background:var(--terra);color:#fff;border-radius:999px;padding:9px 16px;font-size:13px;letter-spacing:.08em}
+.cats{display:flex;gap:12px;justify-content:center;margin:56px 0 0}
+.cats span{border:1px solid #d9d0c0;border-radius:999px;padding:13px 24px;font-size:15px;background:#fff}
+.cats .on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.sec{padding:100px 40px 0}
+.sh{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:36px}
+.sh h2{font-family:Fraunces,serif;font-weight:300;font-size:64px;letter-spacing:-.03em;line-height:1}
+.sh h2 em{color:var(--terra)}
+.sh p{color:var(--muted);max-width:360px;line-height:1.6}
+.bento{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:330px 330px;gap:20px}
+.bx{border-radius:28px;overflow:hidden;position:relative}
+.bx.big{grid-column:span 2;grid-row:span 2}
+.bx.wide{grid-column:span 2}
+.bx .lab{position:absolute;left:18px;bottom:18px;background:rgba(255,255,255,.88);backdrop-filter:blur(8px);border-radius:999px;padding:11px 18px;font-size:15px;font-weight:500;display:flex;gap:10px;align-items:center}
+.bx .lab i{font-style:normal;width:26px;height:26px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font-size:13px}
+.bx.txt{background:var(--terra);color:#FBEFE6;padding:36px;display:flex;flex-direction:column;justify-content:space-between}
+.bx.txt h3{font-family:Fraunces,serif;font-weight:300;font-size:40px;line-height:1.05}
+.bx.txt h3 em{font-style:italic}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.card{background:#fff;border-radius:26px;padding:10px 10px 20px}
+.card .im{height:400px;border-radius:20px;overflow:hidden;position:relative}
+.card .heart{position:absolute;top:12px;right:12px;width:40px;height:40px;border-radius:50%;background:#fff;display:grid;place-items:center}
+.card .heart svg{width:18px;height:18px;stroke:var(--ink);fill:none;stroke-width:1.6}
+.card .tg{position:absolute;top:12px;left:12px;background:var(--olive);color:#fff;border-radius:999px;font-size:12px;padding:7px 12px}
+.card h5{font-family:Fraunces,serif;font-size:21px;font-weight:400;margin:16px 10px 0}
+.card .meta{display:flex;justify-content:space-between;align-items:center;margin:10px 10px 0}
+.card .meta b{font-size:17px;font-weight:500}
+.dots{display:flex;gap:5px}.dots i{width:14px;height:14px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px #d9d0c0}
+.craft{margin:110px 40px 0;background:var(--oat);border-radius:36px;padding:70px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px}
+.craft .intro{grid-column:span 3;display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:20px}
+.craft .intro h2{font-family:Fraunces,serif;font-weight:300;font-size:58px;letter-spacing:-.03em;line-height:1.02;max-width:640px}
+.craft .intro h2 em{color:var(--terra)}
+.step{background:var(--cream);border-radius:24px;overflow:hidden}
+.step .im{height:240px}
+.step div.t{padding:26px}
+.step .n{font-family:Fraunces,serif;font-style:italic;color:var(--terra);font-size:22px}
+.step h4{font-family:Fraunces,serif;font-weight:400;font-size:28px;margin:6px 0 8px}
+.step p{color:var(--muted);line-height:1.6;font-size:15px}
+.rev{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.rv{background:#fff;border-radius:26px;padding:32px}
+.rv .st{color:var(--gold);letter-spacing:4px;font-size:18px}
+.rv p{font-family:Fraunces,serif;font-size:22px;line-height:1.4;font-weight:300;margin:16px 0 22px}
+.rv .who{display:flex;gap:12px;align-items:center;font-size:14px}
+.rv .who span{width:44px;height:44px;border-radius:50%;overflow:hidden}
+.rv .who small{display:block;color:var(--muted)}
+footer{margin:110px 40px 0;background:var(--olive);color:#EDE6D3;border-radius:36px 36px 0 0;padding:70px 64px 40px}
+.ft{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:40px}
+footer h3{font-family:Fraunces,serif;font-weight:300;font-size:46px;line-height:1.05}
+footer h3 em{color:#E2C48A}
+.nl{display:flex;background:rgba(255,255,255,.1);border-radius:999px;padding:6px;margin-top:26px;max-width:420px}
+.nl span{flex:1;padding:12px 16px;opacity:.6}.nl b{background:#F3EEDF;color:var(--olive);border-radius:999px;padding:12px 22px;font-weight:500}
+footer h6{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:#E2C48A;margin-bottom:16px;font-weight:500}
+footer li{list-style:none;opacity:.8;margin-bottom:10px;font-size:15px}
+.cr{margin-top:56px;padding-top:24px;border-top:1px solid rgba(255,255,255,.12);display:flex;justify-content:space-between;font-size:13px;opacity:.6}
+</style></head><body>
+<div class="top"><div class="navbar">
+  <div class="logo"><div class="emblem"></div><div><b>Sri Meenakshi</b><small>Silk House · 1972</small></div></div>
+  <div class="links"><span class="on">Shop all</span><span>Kanchipuram</span><span>Bridal</span><span>Soft silk</span><span>Gifting</span><span>Our story</span></div>
+  <div class="acts"><span class="ic"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg></span><span class="ic"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.5-7-10a4 4 0 017-2.6A4 4 0 0119 10c0 5.5-7 10-7 10z"/></svg></span><span class="pill bagp">Bag · 2</span></div>
+</div></div>
+
+<section class="hero">
+  <div class="hl">
+    <div>
+      <span class="chip-s"><i>✦</i>New · The Wedding Edit 2026</span>
+      <h1>Silk that<br>feels like <em>home.</em></h1>
+      <p>Handwoven Kanchipuram silks, made slowly by weaver families we have known for fifty years.</p>
+      <div class="hb"><span class="pill a">Shop the edit →</span><span class="pill b">Book a video call</span></div>
+    </div>
+    <div class="rating"><div class="av"><span><img src="img/pink-2.jpg"></span><span><img src="img/studio-orange.jpg"></span><span><img src="img/bride-mustard.jpg"></span></div><span><b>4.9 ★</b> from 12,000+ brides &amp; families</span></div>
+  </div>
+  <div class="hr"><img src="img/bride-trees.jpg"><span class="badge">HANDWOVEN · 140 HRS</span>
+    <div class="glass"><span class="t"><img src="img/studio-red.jpg" style="object-position:50% 25%"></span><div><b>Arakku Red Kanjivaram</b><small>Pure silk · Pure zari</small></div><div class="pr"><b>₹28,500</b></div><span class="add">Add to bag</span></div>
+  </div>
+</section>
+<div class="cats"><span class="on">All sarees</span><span>Kanchipuram</span><span>Banarasi</span><span>Soft silk</span><span>Tissue</span><span>Bridal</span><span>Under ₹15,000</span></div>
+
+<section class="sec">
+  <div class="sh"><h2>Find your <em>weave</em></h2><p>Each collection is curated by our family, from everyday soft silks to heirloom bridal Kanjivarams.</p></div>
+  <div class="bento">
+    <div class="bx big"><img src="img/bride-mustard.jpg" style="object-position:50% 20%"><span class="lab">Bridal Kanjivaram <i>→</i></span></div>
+    <div class="bx wide"><img src="img/fabric-purple.jpg"><span class="lab">Pure zari, lab tested <i>→</i></span></div>
+    <div class="bx"><img src="img/green-silver.jpg" style="object-position:50% 20%"><span class="lab">Soft silk <i>→</i></span></div>
+    <div class="bx txt"><h3>Shop live with a <em>stylist</em> on video call.</h3><span class="pill" style="background:#FBEFE6;color:var(--terra);align-self:flex-start">Book a slot →</span></div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sh"><h2>New this <em>week</em></h2><p style="text-align:right"><span class="pill" style="border:1px solid #d9d0c0;background:#fff">View all 240 sarees →</span></p></div>
+  <div class="grid">
+    <div class="card"><div class="im"><span class="tg">New</span><span class="heart"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.5-7-10a4 4 0 017-2.6A4 4 0 0119 10c0 5.5-7 10-7 10z"/></svg></span><img src="img/studio-orange.jpg" style="object-position:50% 25%"></div><h5>Sunset Korvai Kanjivaram</h5><div class="meta"><b>₹24,900</b><div class="dots"><i style="background:#E06A1E"></i><i style="background:#B3123A"></i><i style="background:#2F3A26"></i></div></div></div>
+    <div class="card"><div class="im"><span class="heart"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.5-7-10a4 4 0 017-2.6A4 4 0 0119 10c0 5.5-7 10-7 10z"/></svg></span><img src="img/pink-2.jpg" style="object-position:50% 25%"></div><h5>Blush Rose Brocade Silk</h5><div class="meta"><b>₹19,800</b><div class="dots"><i style="background:#E7A9C0"></i><i style="background:#C99A45"></i></div></div></div>
+    <div class="card"><div class="im"><span class="tg">Bestseller</span><span class="heart"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.5-7-10a4 4 0 017-2.6A4 4 0 0119 10c0 5.5-7 10-7 10z"/></svg></span><img src="img/pink-black.jpg" style="object-position:50% 25%"></div><h5>Rani &amp; Black Temple Silk</h5><div class="meta"><b>₹21,500</b><div class="dots"><i style="background:#C2127A"></i><i style="background:#1B1B1B"></i></div></div></div>
+    <div class="card"><div class="im"><span class="heart"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.5-7-10a4 4 0 017-2.6A4 4 0 0119 10c0 5.5-7 10-7 10z"/></svg></span><img src="img/purple-onred.jpg" style="object-position:50% 25%"></div><h5>Aubergine Zari Border Silk</h5><div class="meta"><b>₹26,400</b><div class="dots"><i style="background:#3B2559"></i><i style="background:#C99A45"></i><i style="background:#7A0F16"></i></div></div></div>
+  </div>
+</section>
+
+<section class="craft">
+  <div class="intro"><h2>From the loom to your <em>wardrobe</em>, honestly.</h2><span class="pill" style="background:var(--olive);color:#fff">Our story →</span></div>
+  <div class="step"><div class="im"><img src="img/fabric-orange.jpg"></div><div class="t"><span class="n">01</span><h4>Woven by hand</h4><p>Every saree takes 80 to 200 hours on a traditional pit loom.</p></div></div>
+  <div class="step"><div class="im"><img src="img/stack.jpg"></div><div class="t"><span class="n">02</span><h4>Checked by family</h4><p>Silk Mark certified, zari purity tested before it reaches you.</p></div></div>
+  <div class="step"><div class="im"><img src="img/bangles.jpg"></div><div class="t"><span class="n">03</span><h4>Delivered with care</h4><p>Gift-ready packaging and free insured shipping across India.</p></div></div>
+</section>
+
+<section class="sec">
+  <div class="sh"><h2>Loved by <em>12,000+</em> families</h2></div>
+  <div class="rev">
+    <div class="rv"><div class="st">★★★★★</div><p>“The colour was exactly as shown on the video call. My mother cried when she saw the zari.”</p><div class="who"><span><img src="img/bride-trees.jpg" style="object-position:50% 20%"></span><div><b>Priya R.</b><small>Chennai · Bridal</small></div></div></div>
+    <div class="rv"><div class="st">★★★★★</div><p>“Third generation of our family buying from Sri Meenakshi. Now it's just a click away.”</p><div class="who"><span><img src="img/green-silver.jpg" style="object-position:50% 15%"></span><div><b>Lakshmi V.</b><small>Bengaluru</small></div></div></div>
+    <div class="rv"><div class="st">★★★★★</div><p>“Delivered to Singapore in five days, beautifully packed. The silk feels incredible.”</p><div class="who"><span><img src="img/studio-yellow.jpg" style="object-position:50% 15%"></span><div><b>Divya S.</b><small>Singapore</small></div></div></div>
+  </div>
+</section>
+
+<footer>
+  <div class="ft">
+    <div><h3>Be the first to see<br><em>new weaves.</em></h3><div class="nl"><span>Your email</span><b>Subscribe</b></div></div>
+    <div><h6>Shop</h6><ul><li>Kanchipuram</li><li>Banarasi</li><li>Soft silk</li><li>Bridal</li></ul></div>
+    <div><h6>Help</h6><ul><li>Track order</li><li>Returns</li><li>Saree care</li><li>Contact</li></ul></div>
+    <div><h6>Visit</h6><ul><li>Flagship store</li><li>Video shopping</li><li>Instagram</li><li>WhatsApp</li></ul></div>
+  </div>
+  <div class="cr"><span>© 2026 Sri Meenakshi Silk House</span><span>Silk Mark Certified · Free shipping across India</span></div>
+</footer>
+
+<div class="spec"><div><small>Design 07 · Modern direction</small><h2 style="font-family:Fraunces,serif;font-weight:300">Quiet Luxury</h2><div class="fonts">Soft, rounded, app-like D2C feel with warm earthy tones.<br>Headings: <b>Fraunces</b> · Body: <b>Outfit</b></div></div>
+<div class="chips"><div class="chip"><i style="background:#F6F2EB"></i><b>Cream</b><span>#F6F2EB</span></div><div class="chip"><i style="background:#EAE2D5"></i><b>Oat</b><span>#EAE2D5</span></div><div class="chip"><i style="background:#2F3A26"></i><b>Olive</b><span>#2F3A26</span></div><div class="chip"><i style="background:#B4532A"></i><b>Terracotta</b><span>#B4532A</span></div><div class="chip"><i style="background:#B89350"></i><b>Gold</b><span>#B89350</span></div></div></div>
+<script>addEventListener("load",()=>document.fonts.ready.then(()=>document.documentElement.dataset.h=document.documentElement.scrollHeight))</script>
+</body></html>

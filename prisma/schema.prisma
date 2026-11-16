@@ -1,0 +1,256 @@
+// Sri Meenakshi Silk House — database schema
+// All money values are stored in paise (₹1 = 100) as integers.
+
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ───────────── Staff / admin ─────────────
+
+enum AdminRole {
+  OWNER
+  MANAGER
+  STAFF
+}
+
+model AdminUser {
+  id           String    @id @default(cuid())
+  email        String    @unique
+  name         String
+  passwordHash String
+  role         AdminRole @default(STAFF)
+  active       Boolean   @default(true)
+  lastLoginAt  DateTime?
+  createdAt    DateTime  @default(now())
+}
+
+// ───────────── Customers ─────────────
+
+model Customer {
+  id        String    @id @default(cuid())
+  phone     String    @unique
+  name      String?
+  email     String?
+  addresses Address[]
+  orders    Order[]
+  wishlist  WishlistItem[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model Address {
+  id         String   @id @default(cuid())
+  customerId String
+  customer   Customer @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  name       String
+  phone      String
+  line1      String
+  line2      String?
+  city       String
+  state      String
+  pincode    String
+  isDefault  Boolean  @default(false)
+  createdAt  DateTime @default(now())
+
+  @@index([customerId])
+}
+
+// ───────────── Catalogue ─────────────
+
+model Category {
+  id          String    @id @default(cuid())
+  name        String
+  slug        String    @unique
+  description String?
+  image       String?
+  sortOrder   Int       @default(0)
+  products    Product[]
+  createdAt   DateTime  @default(now())
+}
+
+enum ProductStatus {
+  DRAFT
+  ACTIVE
+  ARCHIVED
+}
+
+model Product {
+  id             String         @id @default(cuid())
+  slug           String         @unique
+  sku            String         @unique
+  name           String
+  description    String         @default("")
+  categoryId     String?
+  category       Category?      @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+  fabric         String?        // e.g. Pure Mulberry Silk
+  weave          String?        // e.g. Korvai, Temple border
+  zariType       String?        // e.g. Pure gold zari, Tested zari
+  colour         String?        // display name, e.g. Arakku Red
+  colourHex      String?        // swatch colour, e.g. #B3121C
+  occasion       String?        // Bridal, Festive, Everyday…
+  lengthMetres   Float          @default(6.3)
+  blouseIncluded Boolean        @default(true)
+  silkMarkId     String?
+  price          Int            // paise
+  compareAtPrice Int?           // paise, original price for "sale"
+  stock          Int            @default(1)
+  status         ProductStatus  @default(DRAFT)
+  featured       Boolean        @default(false)
+  badge          String?        // New, Bestseller, Limited…
+  seoTitle       String?
+  seoDescription String?
+  images         ProductImage[]
+  orderItems     OrderItem[]
+  wishlistedBy   WishlistItem[]
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+
+  @@index([status, createdAt])
+  @@index([categoryId])
+}
+
+model ProductImage {
+  id        String  @id @default(cuid())
+  productId String
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  url       String
+  alt       String  @default("")
+  sortOrder Int     @default(0)
+
+  @@index([productId])
+}
+
+model WishlistItem {
+  customerId String
+  customer   Customer @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  productId  String
+  product    Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  createdAt  DateTime @default(now())
+
+  @@id([customerId, productId])
+}
+
+// ───────────── Orders ─────────────
+
+enum OrderStatus {
+  PENDING     // created, awaiting payment / confirmation
+  CONFIRMED   // paid online, or COD confirmed
+  PACKED
+  SHIPPED
+  DELIVERED
+  CANCELLED
+  RETURNED
+}
+
+enum PaymentMethod {
+  COD
+  RAZORPAY
+}
+
+enum PaymentStatus {
+  PENDING
+  PAID
+  FAILED
+  REFUNDED
+}
+
+model Order {
+  id                String        @id @default(cuid())
+  number            Int           @unique @default(autoincrement())
+  customerId        String?
+  customer          Customer?     @relation(fields: [customerId], references: [id], onDelete: SetNull)
+  name              String
+  phone             String
+  email             String?
+  addressLine1      String
+  addressLine2      String?
+  city              String
+  state             String
+  pincode           String
+  subtotal          Int
+  discount          Int           @default(0)
+  shippingFee       Int           @default(0)
+  total             Int
+  couponCode        String?
+  paymentMethod     PaymentMethod
+  paymentStatus     PaymentStatus @default(PENDING)
+  status            OrderStatus   @default(PENDING)
+  razorpayOrderId   String?       @unique
+  razorpayPaymentId String?
+  trackingNumber    String?
+  courier           String?
+  customerNote      String?
+  adminNote         String?
+  items             OrderItem[]
+  createdAt         DateTime      @default(now())
+  updatedAt         DateTime      @updatedAt
+
+  @@index([status, createdAt])
+  @@index([phone])
+}
+
+model OrderItem {
+  id           String   @id @default(cuid())
+  orderId      String
+  order        Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  productId    String?
+  product      Product? @relation(fields: [productId], references: [id], onDelete: SetNull)
+  name         String
+  sku          String
+  image        String?
+  unitPrice    Int      // paise, saree + options
+  quantity     Int
+  blouseOption String?  // Unstitched / Stitched / Designer
+  addOns       String[] // e.g. Fall & pico, Gift wrap
+
+  @@index([orderId])
+}
+
+// ───────────── Marketing / service ─────────────
+
+enum CouponType {
+  PERCENT
+  FLAT
+}
+
+model Coupon {
+  id        String     @id @default(cuid())
+  code      String     @unique
+  type      CouponType
+  value     Int        // percent (1-100) or paise
+  minOrder  Int        @default(0)
+  maxUses   Int?
+  usedCount Int        @default(0)
+  expiresAt DateTime?
+  active    Boolean    @default(true)
+  createdAt DateTime   @default(now())
+}
+
+enum BookingStatus {
+  REQUESTED
+  CONFIRMED
+  COMPLETED
+  CANCELLED
+}
+
+model VideoCallBooking {
+  id            String        @id @default(cuid())
+  name          String
+  phone         String
+  preferredDate DateTime
+  slot          String
+  interest      String?
+  status        BookingStatus @default(REQUESTED)
+  createdAt     DateTime      @default(now())
+}
+
+model Subscriber {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  createdAt DateTime @default(now())
+}

@@ -1,26 +1,70 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Quiet Luxury design tokens (approved design) */
+@theme {
+  --color-cream: #f6f2eb;
+  --color-oat: #eae2d5;
+  --color-line: #d9d0c0;
+  --color-olive: #2f3a26;
+  --color-olive-soft: #445237;
+  --color-terra: #b4532a;
+  --color-gold: #b89350;
+  --color-gold-light: #e2c48a;
+  --color-ink: #1f2419;
+  --color-muted: #6e6b5f;
+  --color-paper: #f3eedf;
+
+  --font-serif: var(--font-fraunces), Georgia, serif;
+  --font-sans: var(--font-outfit), system-ui, sans-serif;
+
+  --radius-card: 26px;
+  --radius-panel: 32px;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+  }
+  body {
+    background: var(--color-cream);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-terra);
+    outline-offset: 2px;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Horizontal scrollers on phones: hide the scrollbar but keep swipe */
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@utility btn {
+  @apply inline-flex cursor-pointer items-center justify-center gap-2 rounded-full px-6 py-3 text-[15px] font-medium transition-colors disabled:cursor-not-allowed disabled:opacity-50;
+}
+@utility btn-primary {
+  @apply btn bg-olive text-white hover:bg-olive-soft;
+}
+@utility btn-light {
+  @apply btn bg-paper text-olive hover:bg-white;
+}
+@utility btn-outline {
+  @apply btn border border-line bg-white text-ink hover:border-ink;
+}
+@utility btn-terra {
+  @apply btn bg-terra text-white hover:brightness-110;
+}
+@utility field {
+  @apply w-full rounded-2xl border border-line bg-white px-4 py-3 text-base outline-none transition sm:text-[15px] placeholder:text-muted/70 focus:border-olive;
+}
+@utility label {
+  @apply mb-1.5 block text-sm font-medium text-ink;
+}
+@utility h-display {
+  @apply font-serif font-light tracking-[-0.03em];
 }

@@ -1,0 +1,51 @@
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:#141114}
+body{width:1440px;-webkit-font-smoothing:antialiased;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.emblem{border-radius:50%;background:#8A0B0E url(../../logo.png) 52% 25%/200% no-repeat}
+
+/* woven silk textile (placeholder for product photography) */
+.saree{position:relative;overflow:hidden;
+  background:
+    radial-gradient(circle, var(--z,#C9A050) 0 1.3px, transparent 1.9px) 0 0/22px 22px,
+    linear-gradient(115deg, rgba(255,255,255,0) 25%, rgba(255,255,255,.16) 42%, rgba(255,255,255,0) 58%, rgba(0,0,0,.22) 100%),
+    var(--c1);}
+.saree.butta{background:
+    linear-gradient(115deg, rgba(255,255,255,0) 25%, rgba(255,255,255,.18) 42%, rgba(255,255,255,0) 58%, rgba(0,0,0,.22) 100%),
+    radial-gradient(ellipse 5px 7px, var(--z,#C9A050) 0 60%, transparent 75%) 0 0/34px 40px,
+    var(--c1);}
+.saree.check{background:
+    linear-gradient(115deg, rgba(255,255,255,0) 25%, rgba(255,255,255,.16) 42%, rgba(255,255,255,0) 58%, rgba(0,0,0,.2) 100%),
+    repeating-linear-gradient(90deg, transparent 0 26px, var(--z,#C9A050) 26px 27px),
+    repeating-linear-gradient(0deg, transparent 0 26px, var(--z,#C9A050) 26px 27px),
+    var(--c1);}
+.saree:after{content:"";position:absolute;left:0;right:0;bottom:0;height:var(--bh,30%);
+  background:
+    conic-gradient(from 135deg at 50% 0, var(--z,#C9A050) 90deg, transparent 0) 0 0/16px 12px repeat-x,
+    linear-gradient(var(--z,#C9A050),var(--z,#C9A050)) 0 15px/100% 2px no-repeat,
+    radial-gradient(ellipse 4px 6px, var(--z,#C9A050) 0 70%, transparent 80%) 0 26px/24px 18px repeat-x,
+    linear-gradient(var(--z,#C9A050),var(--z,#C9A050)) 0 48px/100% 1px no-repeat,
+    repeating-linear-gradient(90deg, rgba(255,255,255,0) 0 5px, rgba(255,255,255,.10) 5px 6px) 0 54px/100% 100% no-repeat,
+    linear-gradient(var(--z,#C9A050),var(--z,#C9A050)) 0 calc(100% - 14px)/100% 3px no-repeat,
+    linear-gradient(to bottom, transparent 12px, var(--c2) 12px);}
+.saree.pleat:before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:repeating-linear-gradient(90deg, rgba(0,0,0,0) 0 26px, rgba(0,0,0,.20) 34px, rgba(255,255,255,.10) 42px, rgba(0,0,0,0) 52px);}
+/* folded saree: side border + soft fold lines, like a studio product shot */
+.saree.fold:before{content:"";position:absolute;inset:0;z-index:1;
+  background:
+    linear-gradient(90deg, transparent calc(100% - 30px), var(--z,#C9A050) calc(100% - 30px) calc(100% - 27px), var(--c2) calc(100% - 27px) calc(100% - 6px), var(--z,#C9A050) calc(100% - 6px)),
+    linear-gradient(180deg, transparent 32%, rgba(0,0,0,.18) 33%, rgba(255,255,255,.08) 34.5%, transparent 37%, transparent 64%, rgba(0,0,0,.18) 65%, rgba(255,255,255,.08) 66.5%, transparent 69%);}
+.shot{display:grid;place-items:center;position:relative;overflow:hidden}
+.shot .saree.fold{width:68%;height:60%;box-shadow:0 30px 40px -18px rgba(0,0,0,.45),0 4px 0 -1px rgba(0,0,0,.08);--bh:22%}
+.shot .stack{position:absolute;width:68%;height:60%;transform:translate(10px,14px);background:var(--c2);box-shadow:0 20px 30px -12px rgba(0,0,0,.35)}
+
+/* client spec strip */
+.spec{background:#141114;color:#EFE6D6;font-family:Jost,"DM Sans",sans-serif;padding:46px 80px 52px;display:flex;justify-content:space-between;align-items:center;gap:40px}
+.spec small{display:block;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:#C9A050;margin-bottom:8px}
+.spec h2{font-size:40px;font-weight:500;line-height:1.1}
+.spec .fonts{margin-top:12px;font-size:14px;opacity:.75;line-height:1.7}
+.spec .fonts b{color:#fff;font-weight:500;opacity:1}
+.chips{display:flex;gap:14px}
+.chip{width:112px}
+.chip i{display:block;height:80px;border-radius:6px;border:1px solid rgba(255,255,255,.15)}
+.chip b{display:block;font-size:13px;margin-top:10px;font-weight:500}
+.chip span{font-size:12px;opacity:.6;letter-spacing:.06em}
