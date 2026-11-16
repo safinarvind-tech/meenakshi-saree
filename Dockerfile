@@ -4,6 +4,9 @@
 FROM node:24-slim AS deps
 WORKDIR /app
 COPY package.json package-lock.json ./
+# npm ci runs `prisma generate` (postinstall), which needs the schema and config
+COPY prisma ./prisma
+COPY prisma.config.ts ./
 RUN npm ci --no-audit --no-fund
 
 FROM node:24-slim AS build
