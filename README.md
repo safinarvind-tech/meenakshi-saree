@@ -32,6 +32,15 @@ Useful commands: `npm run typecheck`, `npm run lint`, `npm run test:orders` (ord
 
 > Sample product photos come from Pexels/Unsplash (free licence) and are placeholders. Replace them with the brand's own photos from the admin.
 
+## Free hosting (Render + Neon + Supabase) — for demos
+
+No card needed. Render's free plan sleeps after 15 minutes without visitors (first visit then takes about a minute), so use this for showing the client, and the VPS below for the real launch.
+
+1. **Neon** (database): create a project in region *Asia Pacific (Singapore)*. On the dashboard click **Connect**, turn **Connection pooling off**, and copy the connection string.
+2. **Supabase** (photos): create a project in region *South Asia (Mumbai)*. **Storage → New bucket** named `products`, tick **Public bucket**. From **Project Settings → API Keys** copy the **secret key**, and from **Project Settings → Data API** the **Project URL**.
+3. **Render**: **New → Blueprint**, connect this GitHub repo; Render reads `render.yaml`. Fill in `DATABASE_URL` (Neon), `ADMIN_EMAIL`, `ADMIN_PASSWORD` (10+ characters), `SUPABASE_URL`, `SUPABASE_SECRET_KEY`, and `NEXT_PUBLIC_SITE_URL` (`https://<service-name>.onrender.com`). Deploy. On start the container creates the tables and the owner account.
+4. Optional, sample sarees: create `.env.production` locally with the same `DATABASE_URL`, `SUPABASE_URL`, `SUPABASE_SECRET_KEY`, then run `npm run db:seed:production`.
+
 ## Deploying (Hostinger VPS + Coolify, paid in INR)
 
 1. Buy a **Hostinger KVM 2 VPS** (Mumbai) with the **Coolify** template.

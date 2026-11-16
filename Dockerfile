@@ -9,6 +9,9 @@ RUN npm ci --no-audit --no-fund
 FROM node:24-slim AS build
 WORKDIR /app
 ENV NEXT_TELEMETRY_DISABLED=1
+# Public site URL is baked into page metadata at build time (Render/Coolify pass it as a build arg).
+ARG NEXT_PUBLIC_SITE_URL
+ENV NEXT_PUBLIC_SITE_URL=$NEXT_PUBLIC_SITE_URL
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 RUN npx prisma generate && npm run build
@@ -35,9 +38,9 @@ COPY --from=migrate /migrate/node_modules /migrate/node_modules
 COPY prisma /migrate/prisma
 COPY prisma.config.ts scripts/create-admin.mjs scripts/docker-start.sh /migrate/
 
-# Uploaded product photos live here: mount a persistent volume at /app/storage
+# Uploaded product photos live here when Supabase Storage is not configured:
+# on a VPS (Coolify), mount a persistent volume at /app/storage.
 RUN mkdir -p /app/storage && chown node:node /app/storage
-VOLUME ["/app/storage"]
 
 USER node
 EXPOSE 3000

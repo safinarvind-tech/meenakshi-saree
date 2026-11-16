@@ -12,6 +12,8 @@ const nextConfig: NextConfig = {
       { pathname: "/brand/**", search: "" },
       { pathname: "/media/**", search: "" },
     ],
+    // Product photos stored in Supabase Storage (free hosting setup).
+    remotePatterns: [{ protocol: "https", hostname: "*.supabase.co", pathname: "/storage/v1/object/public/**", search: "" }],
     formats: ["image/avif", "image/webp"],
   },
   experimental: {

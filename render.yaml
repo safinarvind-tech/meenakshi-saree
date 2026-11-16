@@ -1,0 +1,27 @@
+# Render Blueprint: free hosting for the storefront + admin.
+# Render dashboard → New → Blueprint → pick this GitHub repo. Fill in the values marked sync: false.
+# Database: Neon (free). Product photos: Supabase Storage (free). See README → "Free hosting".
+services:
+  - type: web
+    name: sri-meenakshi
+    runtime: docker
+    plan: free
+    region: singapore # closest Render region to India
+    healthCheckPath: /
+    envVars:
+      - key: DATABASE_URL # Neon connection string (direct, not pooled)
+        sync: false
+      - key: AUTH_SECRET
+        generateValue: true
+      - key: ADMIN_EMAIL
+        sync: false
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: NEXT_PUBLIC_SITE_URL # e.g. https://sri-meenakshi.onrender.com
+        sync: false
+      - key: SUPABASE_URL # e.g. https://abcd1234.supabase.co
+        sync: false
+      - key: SUPABASE_SECRET_KEY
+        sync: false
+      - key: SUPABASE_BUCKET
+        value: products
